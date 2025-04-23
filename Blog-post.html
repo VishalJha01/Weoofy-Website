@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WECOFY - Blog Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudfl  rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto+Slab:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        /* Blog post specific styles */
+        .blog-post-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 120px 0 60px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .blog-post-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to bottom right, transparent 49%, var(--background-dark) 50%);
+        }
+        
+        .blog-post-container {
+            background-color: var(--background-light);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .blog-post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-post-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-post-author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .blog-post-author-info h6 {
+            margin-bottom: 0;
+            color: var(--text-color);
+        }
+        
+        .blog-post-author-info small {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .blog-post-category {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .blog-post-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-content {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .blog-post-content h2 {
+            font-family: var(--font-heading);
+            color: var(--text-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .blog-post-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-post-content ul, 
+        .blog-post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .blog-post-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-post-share {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-post-share-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .blog-post-share-buttons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-post-share-buttons a:hover {
+            background-color: var(--accent-color);
+            color: var(--background-dark);
+            transform: translateY(-3px);
+        }
+        
+        .blog-post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        
+        .blog-post-nav-link {
+            background-color: var(--background-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 48%;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-post-nav-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-post-nav-direction {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-post-nav-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin: 0;
+        }
+        
+        .blog-post-related {
+            margin-top: 4rem;
+        }
+        
+        .blog-post-related-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            text-align: center;
+        }
+        
+        .blog-post-comments {
+            margin-top: 4rem;
+        }
+        
+        .blog-post-comments-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+        
+        .comment {
+            background-color: var(--background-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .comment-author {
+            font-weight: 600;
+            margin-bottom: 0;
+            color: var(--text-color);
+        }
+        
+        .comment-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .comment-content {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .comment-form {
+            background-color: var(--background-light);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .comment-form-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .comment-form .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-color);
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .comment-form .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.25rem rgba(139, 195, 74, 0.25);
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">WECOFY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#reviews">Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex search-form me-3" role="search">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search blog posts..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="d-flex align-items-center">
+                    <a class="nav-link position-relative me-3" href="#" id="cartButton" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="fas fa-shopping-cart fs-5"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fas fa-user fs-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Header -->
+    <header class="blog-post-header">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
+                            <li class="breadcrumb-item"><a href="blog.html" class="text-white">Blog</a></li>
+                            <li class="breadcrumb-item active text-white-50" aria-current="page">Blog Post</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Post Content -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="blog-post" class="blog-post-container">
+                    <!-- Blog post content will be dynamically inserted here by JavaScript -->
+                </div>
+                
+                <!-- Blog Post Navigation -->
+                <div class="blog-post-navigation">
+                    <a href="#" class="blog-post-nav-link text-decoration-none">
+                        <div class="blog-post-nav-direction">
+                            <i class="fas fa-arrow-left me-2"></i> Previous Post
+                        </div>
+                        <h5 class="blog-post-nav-title">Ocean Plastic Crisis: Innovative Solutions</h5>
+                    </a>
+                    <a href="#" class="blog-post-nav-link text-decoration-none">
+                        <div class="blog-post-nav-direction text-end">
+                            Next Post <i class="fas fa-arrow-right ms-2"></i>
+                        </div>
+                        <h5 class="blog-post-nav-title text-end">Zero Waste Living: Simple Steps</h5>
+                    </a>
+                </div>
+                
+                <!-- Related Posts -->
+                <div class="blog-post-related">
+                    <h3 class="blog-post-related-title">Related Posts</h3>
+                    <div class="row g-4" id="related-posts">
+                        <!-- Related posts will be dynamically inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Comments Section -->
+                <div class="blog-post-comments">
+                    <h3 class="blog-post-comments-title">Comments (3)</h3>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <img src="https://source.unsplash.com/100x100/?person" alt="Avatar" class="comment-avatar">
+                            <div>
+                                <h6 class="comment-author">John Smith</h6>
+                                <div class="comment-date">January 20, 2024</div>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <p>This is a very informative article. I've been looking for ways to reduce my carbon footprint, and these tips are very helpful. Thank you for sharing!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <img src="https://source.unsplash.com/100x100/?woman" alt="Avatar" class="comment-avatar">
+                            <div>
+                                <h6 class="comment-author">Emily Johnson</h6>
+                                <div class="comment-date">January 18, 2024</div>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <p>I've been following your blog for a while now, and I always find your articles insightful. The data you presented here is alarming, but it's important that we face these facts and take action.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="comment">
+                        <div class="comment-header">
+                            <img src="https://source.unsplash.com/100x100/?man" alt="Avatar" class="comment-avatar">
+                            <div>
+                                <h6 class="comment-author">Michael Brown</h6>
+                                <div class="comment-date">January 16, 2024</div>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <p>Great article! I've shared it with my friends and family. We need more awareness about these issues.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+                        <h4 class="comment-form-title">Leave a Comment</h4>
+                        <form id="comment-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <textarea class="form-control" rows="5" placeholder="Your Comment" required></textarea>
+                            <button type="submit" class="btn btn-success mt-3">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="sticky-top" style="top: 100px;">
+                    <!-- Search Widget -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Search</h5>
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="Search articles..." aria-label="Search">
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories Widget -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Categories</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none">Climate Change</a>
+                                    <span class="badge bg-success rounded-pill">4</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none">Sustainable Living</a>
+                                    <span class="badge bg-success rounded-pill">6</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none">Ocean Conservation</a>
+                                    <span class="badge bg-success rounded-pill">3</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none">Zero Waste</a>
+                                    <span class="badge bg-success rounded-pill">5</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="#" class="text-decoration-none">Eco-Friendly Products</a>
+                                    <span class="badge bg-success rounded-pill">7</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Posts Widget -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Recent Posts</h5>
+                            <div class="recent-post d-flex mb-3">
+                                <img src="pp.jpg" alt="Recent Post" class="rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                <div>
+                                    <h6 class="mb-1"><a href="#" class="text-decoration-none">The Alarming Rise of Global Temperatures</a></h6>
+                                    <small class="text-muted">January 15, 2024</small>
+                                </div>
+                            </div>
+                            <div class="recent-post d-flex mb-3">
+                                <img src="oce.jpg" alt="Recent Post" class="rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                <div>
+                                    <h6 class="mb-1"><a href="#" class="text-decoration-none">Ocean Plastic Crisis: Innovative Solutions</a></h6>
+                                    <small class="text-muted">January 10, 2024</small>
+                                </div>
+                            </div>
+                            <div class="recent-post d-flex">
+                                <img src="re.jpg" alt="Recent Post" class="rounded me-3" style="width: 70px; height: 70px; object-fit: cover;">
+                                <div>
+                                    <h6 class="mb-1"><a href="#" class="text-decoration-none">The Hidden Cost of Fast Fashion</a></h6>
+                                    <small class="text-muted">January 5, 2024</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags Widget -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Tags</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">sustainability</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">eco-friendly</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">climate</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">zero-waste</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">recycling</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">green-living</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">environment</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">plastic-free</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">renewable</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Widget -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Subscribe to Newsletter</h5>
+                            <p class="card-text">Stay updated with our latest articles and eco-friendly tips.</p>
+                            <form id="sidebar-newsletter-form">
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="py-5 bg-gradient mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="text-white mb-3">Join Our Eco Community</h2>
+                    <p class="text-white mb-4">Subscribe to our newsletter for sustainable living tips, exclusive offers, and updates on new eco-friendly products.</p>
+                    <form id="newsletter-form-main" class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <button class="btn btn-light" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-4">
+                        <h3>WECOFY</h3>
+                        <p>Sustainable living for a better tomorrow</p>
+                    </div>
+                    <p>Join our mission to make eco-friendly choices accessible to everyone. Together, we can create a more sustainable future.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="index.html#shop">Shop</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#reviews">Reviews</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Customer Service</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to receive updates on new products and sustainability tips.</p>
+                    <form id="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <button class="btn btn-success" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                    <div class="mt-3">
+                        <p><i class="fas fa-envelope me-2"></i> jha556166@gmail.com</p>
+                        <p><i class="fas fa-phone me-2"></i> +91 8851072378</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">&copy; 2025 WECOFY. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="cartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Item added to your cart!
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Blog post data
+            const blogPosts = [
+                {
+                    id: 1,
+                    title: "The Alarming Rise of Global Temperatures: What You Need to Know",
+                    content: `
+                        <p>Climate change is one of the most pressing issues of our time, with global temperatures rising at an unprecedented rate. This article explores the latest data on global warming and its far-reaching impacts on our planet's ecosystems.</p>
+                        
+                        <h2>The Current State of Global Warming</h2>
+                        <p>According to NASA, the average global temperature has increased by about 1.1°C (2°F) since the late 19th century. The majority of this warming has occurred in the past 40 years, with the seven most recent years being the warmest on record.</p>
+                        
+                        <h2>Impacts on Ecosystems</h2>
+                        <p>The effects of global warming are already visible in many ecosystems around the world:</p>
+                        <ul>
+                            <li>Arctic sea ice is declining at a rate of 13% per decade</li>
+                            <li>Coral reefs are experiencing mass bleaching events</li>
+                            <li>Extreme weather events, such as hurricanes and heatwaves, are becoming more frequent and intense</li>
+                            <li>Many plant and animal species are facing extinction due to habitat loss and changing climate conditions</li>
+                        </ul>
+                        
+                        <h2>What Can We Do?</h2>
+                        <p>While the situation is dire, there are steps we can take to mitigate the effects of global warming:</p>
+                        <ol>
+                            <li>Reduce our carbon footprint by using renewable energy sources and improving energy efficiency</li>
+                            <li>Support policies and initiatives that aim to reduce greenhouse gas emissions</li>
+                            <li>Protect and restore natural habitats, such as forests and wetlands, which act as carbon sinks</li>
+                            <li>Make sustainable choices in our daily lives, such as using public transportation or eating a plant-based diet</li>
+                        </ol>
+                        
+                        <p>By taking action now, we can work towards a more sustainable future and protect our planet for generations to come. Every individual effort counts, and together, we can make a significant impact in combating climate change.</p>
+                        
+                        <h2>The Role of International Cooperation</h2>
+                        <p>Addressing climate change requires global cooperation. International agreements like the Paris Climate Accord represent important steps toward coordinated action. Countries around the world are setting ambitious targets to reduce emissions and transition to renewable energy sources.</p>
+                        
+                        <p>However, more needs to be done. Governments, businesses, and individuals all have important roles to play in this global challenge. By working together and holding each other accountable, we can create meaningful change.</p>
+                        
+                        <h2>Conclusion</h2>
+                        <p>The rising global temperatures present one of the greatest challenges of our time. While the data is concerning, there is still hope. Through collective action, innovative solutions, and sustainable practices, we can mitigate the worst effects of climate change and build a healthier planet for future generations.</p>
+                    `,
+                    image: "pp.jpg",
+                    date: "January 15, 2024",
+                    author: "Dr. Emily Chen",
+                    authorImage: "12.jpeg",
+                    category: "Climate Change"
+                },
+                // ... (other blog posts)
+            ];
+
+            // Get the blog post ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = parseInt(urlParams.get('id'));
+
+            // Find the blog post with the matching ID
+            const post = blogPosts.find(post => post.id === postId);
+
+            if (post) {
+                const blogPostContainer = document.getElementById('blog-post');
+                blogPostContainer.innerHTML = `
+                    <h1 class="blog-post-title">${post.title}</h1>
+                    <div class="blog-post-meta">
+                        <div class="blog-post-author">
+                            <img src="${post.authorImage}" alt="${post.author}" class="blog-post-author-img">
+                            <div class="blog-post-author-info">
+                                <h6>${post.author}</h6>
+                                <small>${post.date}</small>
+                            </div>
+                        </div>
+                        <span class="blog-post-category">${post.category}</span>
+                    </div>
+                    <img src="${post.image}" alt="${post.title}" class="blog-post-image">
+                    <div class="blog-post-content">
+                        ${post.content}
+                    </div>
+                    <div class="blog-post-share">
+                        <h5 class="blog-post-share-title">Share this article</h5>
+                        <div class="blog-post-share-buttons">
+                            <a href="#" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" title="Share on Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#" title="Share via Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                `;
+                
+                // Populate related posts
+                const relatedPostsContainer = document.getElementById('related-posts');
+                const relatedPosts = blogPosts.filter(p => p.id !== postId).slice(0, 3);
+                
+                relatedPosts.forEach(relatedPost => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'col-md-4';
+                    postElement.innerHTML = `
+                        <div class="blog-card h-100">
+                            <div class="blog-card-img-container">
+                                <img src="${relatedPost.image}" class="blog-card-img" alt="${relatedPost.title}">
+                                <span class="blog-category-tag">${relatedPost.category}</span>
+                            </div>
+                            <div class="blog-card-body">
+                                <h5 class="blog-card-title">${relatedPost.title}</h5>
+                                <div class="blog-card-meta">
+                                    <div class="blog-author">
+                                        <img src="${relatedPost.authorImage}" alt="${relatedPost.author}" class="blog-author-img">
+                                        <span>${relatedPost.author}</span>
+                                    </div>
+                                    <span>${relatedPost.date}</span>
+                                </div>
+                                <a href="blog-post.html?id=${relatedPost.id}" class="btn btn-outline-success w-100">Read More</a>
+                            </div>
+                        </div>
+                    `;
+                    relatedPostsContainer.appendChild(postElement);
+                });
+                
+                // Update document title
+                document.title = `${post.title} - WECOFY Blog`;
+            } else {
+                const blogPostContainer = document.getElementById('blog-post');
+                blogPostContainer.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="fas fa-exclamation-circle fa-3x mb-3 text-muted"></i>
+                        <h2>Blog Post Not Found</h2>
+                        <p class="text-muted">Sorry, the requested blog post could not be found.</p>
+                        <a href="blog.html" class="btn btn-outline-success mt-3">Back to Blog</a>
+                    </div>
+                `;
+            }
+
+            // Comment form submission
+            const commentForm = document.getElementById('comment-form');
+            if (commentForm) {
+                commentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Create and show in-page notification
+                    const notification = document.createElement("div");
+                    notification.className = "cart-notification";
+                    notification.innerHTML = `
+                        <div class="cart-notification-content">
+                            <i class="fas fa-check-circle cart-notification-icon"></i>
+                            <div class="cart-notification-message">
+                                <span class="cart-notification-title">Thank You!</span>
+                                <span class="cart-notification-description">Your comment has been submitted for review.</span>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(notification);
+                    
+                    // Show notification
+                    setTimeout(() => {
+                        notification.classList.add("show");
+                    }, 100);
+                    
+                    // Hide and remove notification after 3 seconds
+                    setTimeout(() => {
+                        notification.classList.remove("show");
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 300);
+                    }, 3000);
+                    
+                    commentForm.reset();
+                });
+            }
+
+            // Newsletter form submission
+            const newsletterForms = document.querySelectorAll('#newsletter-form, #newsletter-form-main, #sidebar-newsletter-form');
+            newsletterForms.forEach(form => {
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        // Create and show in-page notification
+                        const notification = document.createElement("div");
+                        notification.className = "cart-notification";
+                        notification.innerHTML = `
+                            <div class="cart-notification-content">
+                                <i class="fas fa-check-circle cart-notification-icon"></i>
+                                <div class="cart-notification-message">
+                                    <span class="cart-notification-title">Thank You!</span>
+                                    <span class="cart-notification-description">You've been subscribed to our newsletter.</span>
+                                </div>
+                            </div>
+                        `;
+                        document.body.appendChild(notification);
+                        
+                        // Show notification
+                        setTimeout(() => {
+                            notification.classList.add("show");
+                        }, 100);
+                        
+                        // Hide and remove notification after 3 seconds
+                        setTimeout(() => {
+                            notification.classList.remove("show");
+                            setTimeout(() => {
+                                document.body.removeChild(notification);
+                            }, 300);
+                        }, 3000);
+                        
+                        form.reset();
+                    });
+                }
+            });
+
+            // Update cart count
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+        });
+    </script>
+</body>
+</html>
